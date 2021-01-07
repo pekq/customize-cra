@@ -65,6 +65,19 @@ export const fixBabelImports = (libraryName, options) =>
     `fix-${libraryName}-imports`
   ]);
 
+export const fixBabelImportsNamed = (libraryName, options, name) =>
+  addBabelPlugin([
+    "import",
+    Object.assign(
+      {},
+      {
+        libraryName
+      },
+      options
+    ),
+    name
+  ]);
+
 export const removeInternalBabelPlugin = pluginName => config => {
   config.plugins = config.plugins.filter(p => p.constructor.name !== pluginName);
   return config;
